@@ -76,7 +76,7 @@ public class ProppantService {
 					line++;
 				} else if ((st.startsWith("//"))) {
 					if (db.replaceAll("\\s+", "").equalsIgnoreCase("proppantproperties")) {
-						for (int i = param.indexOf(type); i < param.indexOf(type) + 12; i++) {
+						for (int i = param.indexOf(type); i < param.indexOf(type) + 6; i++) {
 							param1.add(param.get(i));
 							value1.add(value.get(i));
 						}

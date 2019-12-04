@@ -85,7 +85,7 @@
 		event.preventDefault();
 		var i = 0;
 		$('input[name="value"]').each(function() {
-			if ($(this).val() == '') {
+			if ($(this).val() == '' ||$(this).val() =="null" ) {
 				i = i + 1;
 				$(this).attr("placeholder", "Required");
 				$(this).css({'border':'1px solid #d9534f'});
@@ -113,12 +113,14 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-6">
 					<select name="ftype" id="fType" class="form-control danger">
+	<option  selected hidden th:value="${session.contollerFType}">[[${session.contollerFType}]]</option>		
 						<option value="Reservoir properties">Reservoir properties</option>
 						<option value="Fracture Mechanics Properties">Fracture
 							Mechanics Properties</option>
 						<option value="Optimum Fracture Design Input">Optimum
 							Fracture Design Input</option>
 					</select>
+					
 				</div>
 			</div>
 			<br>

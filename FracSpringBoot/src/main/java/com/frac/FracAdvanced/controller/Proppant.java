@@ -38,12 +38,20 @@ public class Proppant {
 		return map + "/import";
 	}
 
-	@RequestMapping("/setproppant")
+	@RequestMapping("/setproppant") 
 	public String setProppant(RedirectAttributes redirectattribute, Model model, @RequestParam("val") String type,
 			@RequestParam("pid") Integer pid) throws Exception {
 		proppantservice.setProppant(pid, type);
-		redirectattribute.addFlashAttribute("pid", pid);
-		return "redirect:/showproppant";
+		//redirectattribute.addFlashAttribute("pid", pid);
+		//return "redirect:/showproppant";
+		model.addAttribute("pid", pid);
+		model.addAttribute("list", proppantservice.showList(pid));
+		model.addAttribute("ptype", proppantservice.showList(pid).get(0).getParam());
+		model.addAttribute("wellType", proppantservice.getWellTypeFromReservoirFluidMethod(pid));
+		model.addAttribute("darcyList", proppantservice.showDarcy(pid));
+		model.addAttribute("eqtype", proppantservice.showEquation(pid));
+		model.addAttribute("darcyEqList", proppantservice.darcyEqList());
+		return map + "/import";
 	}
 
 	@RequestMapping("/editproppantdata")

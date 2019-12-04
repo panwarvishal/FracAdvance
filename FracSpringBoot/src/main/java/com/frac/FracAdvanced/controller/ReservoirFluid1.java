@@ -6,6 +6,8 @@ package com.frac.FracAdvanced.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,10 +44,11 @@ public class ReservoirFluid1 {
 
 	@RequestMapping("/showRFSecondController")
 	public String changeTypeOfFluid(@RequestParam("pid") Integer pid1, @RequestParam("fluidT") String ftype,
-			@RequestParam("radioValue") String radioValue, Model model) throws Exception {
+			@RequestParam("radioValue") String radioValue, Model model, HttpSession httpSession) throws Exception {
 		List<ReservoirFluidModel> b1 = reservoirFluid.getListMethod(pid1, ftype, radioValue);
 		model.addAttribute("pid", pid1);
 		model.addAttribute("list", b1);
+		httpSession.setAttribute("contollerFType", ftype);
 		return "/view/reservoirFluid2/showlist";
 	}
 

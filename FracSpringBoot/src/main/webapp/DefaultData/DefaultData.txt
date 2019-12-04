@@ -49,238 +49,354 @@ Rock Embedment Strength(psi)=0.0
 Tensile Strength(psi)=0.0
 //
 proppantproperties
-WL Hsp 12/18=12/18
-Mesh=12/18 
+BorProp 10/14=10/14
+Mesh=10/14 
 Poppant Diameter (Inch)=0.0558298
-Packed Porosity=0.38	
 Specific Gravity=3.38
 Bulk Density (g/cm^3)=1.88
-Bulk Density (lb/ft^3)=117.29
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=36
-Closure Presure Range(psi)=10000(69MPa)
+Kf=1939064.885
+*
+ForeRCP 10/14=10/14
+Mesh=10/14  
+Poppant Diameter (Inch)=0.0722835036
+Specific Gravity=2.39
+Bulk Density (g/cm^3)=1.62
+Kf=1939064.885 
+*
+ForePROP 10/14=10/14
+Mesh=10/14  
+Poppant Diameter (Inch)=0.0677953122
+Specific Gravity=2.58
+Bulk Density (g/cm^3)=1.68
+Kf=1939064.885
+*
+XE112 12/18=12/18
+Mesh=12/18 
+Poppant Diameter (Inch)=0.055905542
+Specific Gravity=3.2
+Bulk Density (g/cm^3)=1.78
+Kf=1939064.885
+*
+BorPROP 12/18=12/18
+Mesh=12/18 
+Poppant Diameter (Inch)=0.0517323114
+Specific Gravity=3.04
+Bulk Density (g/cm^3)=1.87
+Kf=1939064.885
+*
+ForePROP 12/18=12/18
+Mesh=12/18 
+Poppant Diameter (Inch)=0.0486614436
+Specific Gravity=2.93
+Bulk Density (g/cm^3)=1.76
+Kf=1939064.885
+*
+ForeRCP 12/18=12/18
+Mesh=12/18 
+Poppant Diameter (Inch)=0.0537008164
+Specific Gravity=2.89
+Bulk Density (g/cm^3)=1.71
+Kf=1939064.885
+*
+Treg 16/20=16/20
+Mesh=16/20 
+Poppant Diameter (Inch)=0.037401595
+Specific Gravity=2.64
+Bulk Density (g/cm^3)=1.54
+Kf=1939064.885
+*
+Ceramax 16/20=16/20
+Mesh=16/20 
+Poppant Diameter (Inch)=0.041732306
+Specific Gravity=2.66
+Bulk Density (g/cm^3)=1.57
+Kf=1939064.885
+*
+ForePROP 16/20=16/20
+Mesh=16/20 
+Poppant Diameter (Inch)=0.0377559259
+Specific Gravity=2.83
+Bulk Density (g/cm^3)=1.73
+Kf=1939064.885
+*
+ForePROP 16/30=16/30
+Mesh=16/30 
+Poppant Diameter (Inch)=0.0362598621
+Specific Gravity=3.02
+Bulk Density (g/cm^3)=1.84
+Kf=1939064.885
+*
+BorePROP 16/20=16/20
+Mesh=16/20 
+Poppant Diameter (Inch)=0.0377559259
+Specific Gravity=3.02
+Bulk Density (g/cm^3)=1.84
+Kf=1939064.885
+*
+BorePROP 16/30=16/30
+Mesh=16/30 
+Poppant Diameter (Inch)=0.0377559259
+Specific Gravity=0.0296063152
+Bulk Density (g/cm^3)=1.84
+Kf=1939064.885
+*
+ForePROP 16/20=16/20
+Mesh=16/20 
+Poppant Diameter (Inch)=0.0377559259
+Specific Gravity=2.83
+Bulk Density (g/cm^3)=1.73
+Kf=1939064.885
+*
+BorPROP 20/40=20/40
+Mesh=20/40 
+Poppant Diameter (Inch)=0.0260630062
+Specific Gravity=3.02
+Bulk Density (g/cm^3)=1.8
+Kf=1939064.885
+*
+CarboP 8/14=8/14
+Mesh=8/14 
+Poppant Diameter (Inch)=0.06692917
+Specific Gravity=2
+Bulk Density (g/cm^3)=1.88
+Kf=1939064.885
+*
+C-Lite 16/20=16/20
+Mesh=16/20 
+Poppant Diameter (Inch)=0.0373622249
+Specific Gravity=2.72
+Bulk Density (g/cm^3)=1.63
+Kf=1939064.885
+*
+CarboP 16/20=16/20
+Mesh=16/20 
+Poppant Diameter (Inch)=0.0377559259
+Specific Gravity=2.83
+Bulk Density (g/cm^3)=1.73
+Kf=1939064.885
+*
+ForePROP 16/20=16/20.................
+Mesh=16/20 
+Poppant Diameter (Inch)=0.0391732495
+Specific Gravity=3.3
+Bulk Density (g/cm^3)=1.9
+Kf=1939064.885
+*
+SinLit 12/20=12/20.................
+Mesh=12/20 
+Poppant Diameter (Inch)=0.0447638037
+Specific Gravity=3.25
+Bulk Density (g/cm^3)=1.81
+Kf=1939064.885
+*
+SinLit 16/30=16/30.................
+Mesh=16/30 
+Poppant Diameter (Inch)=0.0377559259
+Specific Gravity=2.83
+Bulk Density (g/cm^3)=1.73
+Kf=1939064.885
+*
+Chi C-Lite 16/30=16/30.................
+Mesh=16/30 
+Poppant Diameter (Inch)=0.0377559259
+Specific Gravity=2.83
+Bulk Density (g/cm^3)=1.73
+Kf=1939064.885
+*
+C-Lite 20/40=20/40.................
+Mesh=20/40 
+Poppant Diameter (Inch)=0.0377559259
+Specific Gravity=2.83
+Bulk Density (g/cm^3)=1.73
+Kf=1939064.885
+*
+SinLite 20/40=20/40
+Mesh=20/40 
+Poppant Diameter (Inch)=0.0348031684
+Specific Gravity=2.83
+Bulk Density (g/cm^3)=1.73
+Kf=1939064.885
+*
+TX Brown 8/16=8/16
+Mesh=8/16 
+Poppant Diameter (Inch)=0.0660083779673395
+Specific Gravity=2.65
+Bulk Density (g/cm^3)=1.6
+Kf=1939064.885
+*
+TX Brown 12/20=12/20
+Mesh=12/20
+Poppant Diameter (Inch)=0.049661041777578
+Specific Gravity=2.65
+Bulk Density (g/cm^3)=1.6
+Kf=1939064.885
+*
+TX Brown 16/30=16/30.................
+Mesh=16/30
+Poppant Diameter (Inch)=0.0366072175237923
+Specific Gravity=2.65
+Bulk Density (g/cm^3)=1.6
+Kf=1939064.885
+*
+TX Brown 20/40=20/40.................
+Mesh=20/40
+Poppant Diameter (Inch)=0.0253083140995531
+Specific Gravity=2.65
+Bulk Density (g/cm^3)=1.54
+Kf=1939064.885
+*
+TX Brown 30/70=30/70.................
+Mesh=30/70
+Poppant Diameter (Inch)=0.0106041745057787
+Specific Gravity=2.65
+Bulk Density (g/cm^3)=1.53
+Kf=1939064.885
+*
+CarboHSP bauxite 12/18=12/18.................
+Mesh=12/18
+Poppant Diameter (Inch)=0.0508267991
+Specific Gravity=3.61
+Bulk Density (g/cm^3)=2.1
+Kf=1939064.885
+*
+CarboHSP bauxite 16/30=16/30.................
+Mesh=12/20
+Poppant Diameter (Inch)=0.0376378156
+Specific Gravity=3.61
+Bulk Density (g/cm^3)=2.1
+Kf=1939064.885
+*
+CarboHSP bauxite 20/40=20/40.................
+Mesh=20/40
+Poppant Diameter (Inch)=0.0274409597
+Specific Gravity=3.61
+Bulk Density (g/cm^3)=2.1
+Kf=1939064.885
+*
+CarboHSP bauxite 30/60=30/60.................
+Mesh=30/60
+Poppant Diameter (Inch)=0.016929143
+Specific Gravity=3.61
+Bulk Density (g/cm^3)=2.1
 Kf=1939064.885
 *
 WL Hsp 16/30=16/30
 Mesh=16/30
 Poppant Diameter (Inch)=0.0376664
-Packed Porosity=0.38
 Specific Gravity=3.37
 Bulk Density (g/cm^3)=1.87
-Bulk Density (lb/ft^3)=116.67
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=37
-Closure Presure Range(psi)=10000(69MPa)
 Kf=882609.1504
 *
 WL Hsp 20/40=20/40
 Mesh=20/40
 Poppant Diameter (Inch)=0.0282892
-Packed Porosity=0.38	
 Specific Gravity=3.23
 Bulk Density (g/cm^3)=1.82
-Bulk Density (lb/ft^3)=113.6
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=74
-Closure Presure Range(psi)=10000(69MPa)
 kf=497853.4598
 *
 WL Hsp 30/50=30/50
 Mesh=30/50
 Poppant Diameter (Inch)=0.0194636
-Packed Porosity=0.38
 Specific Gravity=3.27
 Bulk Density (g/cm^3)=1.75
-Bulk Density (lb/ft^3)=109.58
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=72
-Closure Presure Range(psi)=10000(69MPa)
 kf=235671.214
 *
 WL Isp 12/18 =12/18 
 Mesh=12/18
 Poppant Diameter (Inch)=0.0545296
-Packed Porosity=0.38	
 Specific Gravity=3.32
 Bulk Density (g/cm^3)=1.74
-Bulk Density (lb/ft^3)=108.6
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=56
-Closure Presure Range(psi)=5000-10000(34-69MPa)
 Kf=1849800.197
 *
 WL Isp 16/30=16/30
 Mesh=16/30
 Poppant Diameter (Inch)=0.0375088
-Packed Porosity=0.38
 Specific Gravity=3.15
 Bulk Density (g/cm^3)=1.79
-Bulk Density (lb/ft^3)=111.7
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=47
-Closure Presure Range(psi)=5000-10000(34-69MPa)
 Kf=875238.7513
 *
 WL Isp 20/40=20/40
 Mesh=20/40
 Poppant Diameter (Inch)=0.0257676
-Packed Porosity=0.38
 Specific Gravity=3.18
 Bulk Density (g/cm^3)=1.82
-Bulk Density (lb/ft^3)=113.6
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=23
-Closure Presure Range(psi)=5000-10000(34-69MPa)
 Kf=413055.2417
 *
 WL Isp 30/50=30/50
 Mesh=30/50
 Poppant Diameter (Inch)=0.0199758
-Packed Porosity=0.38	
 Specific Gravity=3.1
 Bulk Density (g/cm^3)=1.71
-Bulk Density (lb/ft^3)=106.7
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=23
-Closure Presure Range(psi)=5000-10000(34-69MPa)
 Kf=248238.1693
 *
 WL Isp 40/70=40/70
 Mesh=40/70
 Poppant Diameter (Inch)=0.015169
-Packed Porosity=0.38	
 Specific Gravity=3.26
 Bulk Density (g/cm^3)=1.69
-Bulk Density (lb/ft^3)=105.5
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=36
-Closure Presure Range(psi)=5000-10000(34-69MPa)
 Kf=143144.3135
 *
 WL Lite 12/18=12/18
 Mesh=12/18
 Poppant Diameter (Inch)=0.0553964
-Packed Porosity=0.38
 Specific Gravity=2.77
 Bulk Density (g/cm^3)=1.52
-Bulk Density (lb/ft^3)=94.81
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=43
-Closure Presure Range(psi)=5000(34MPa)
 Kf=1909076.284
 *
 WL Lite 16/30=16/30
 Mesh=16/30
 Poppant Diameter (Inch)=0.0367208
-Packed Porosity=0.38	
 Specific Gravity=2.76
 Bulk Density (g/cm^3)=1.55
-Bulk Density (lb/ft^3)=96.7
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=11
-Closure Presure Range(psi)=5000(34MPa)
 Kf=838850.3031
 *
 WL Lite 20/40=20/40
 Mesh=20/40
 Poppant Diameter (Inch)=0.0273042
-Packed Porosity=0.38	
 Specific Gravity=2.74
 Bulk Density (g/cm^3)=1.5
-Bulk Density (lb/ft^3)=93.6
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=42
-Closure Presure Range(psi)=5000(34MPa)
 Kf=463787.5758
 *
 WL Lite 30/50=30/50
 Mesh=30/50
 Poppant Diameter (Inch)=0.0173754
-Packed Porosity=0.38	
 Specific Gravity=2.73
 Bulk Density (g/cm^3)=1.52
-Bulk Density (lb/ft^3)=94.81
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=21
-Closure Presure Range(psi)=5000(34MPa)
 Kf=187814.8034
 *
 WL Lite 40/70=40/70
 Mesh=40/70
 Poppant Diameter (Inch)=0.0131596
-Packed Porosity=0.38	
 Specific Gravity=2.75
 Bulk Density (g/cm^3)=1.47
-Bulk Density (lb/ft^3)=91.7
-Roundness=0.9
-Sphericity=0.9
-Turbidity(FTU)=9
-Closure Presure Range(psi)=5000(34MPa)
 Kf=107732.2114
 *
 WL Rcs 16/30=16/30
 Mesh=16/30
 Poppant Diameter (Inch)=0.0369178
-Packed Porosity=0.38	
 Specific Gravity=2.53
 Bulk Density (g/cm^3)=1.59
-Bulk Density (lb/ft^3)=99.2
-Roundness=0.8
-Sphericity=0.8
-Turbidity(FTU=10
-Closure Presure Range(psi)=8000(55MPa)
 Kf=847874.986
 *
 WL Rcs 20/40=20/40
 Mesh=20/40
 Poppant Diameter (Inch)=0.0255706
-Packed Porosity=0.38	
 Specific Gravity=2.5
 Bulk Density (g/cm^3)=1.58
-Bulk Density (lb/ft^3)=98.6
-Roundness=0.8
-Sphericity=0.8
-Turbidity(FTU)=5
-Closure Presure Range(psi)=8000(55MPa)
 Kf=406763.5554
 *
 WL Rcs 30/50=30/50
 Mesh=30/50
 Poppant Diameter (Inch)=0.0178876
-Packed Porosity=0.38	
 Specific Gravity=2.5
 Bulk Density (g/cm^3)=1.58
-Bulk Density (lb/ft^3)=98.6
-Roundness=0.8
-Sphericity=0.8
-Turbidity(FTU)=6
-Closure Presure Range(psi)=8000(55MPa)
 Kf=199050.9922
 *
 WL Rcs 40/70=40/70
 Mesh=40/70
 Poppant Diameter (Inch)=0.0127262
-Packed Porosity=0.38	
 Specific Gravity=2.45
 Bulk Density (g/cm^3)=1.55
-Bulk Density (lb/ft^3)=96.7
-Roundness=0.8
-Sphericity=0.8
-Turbidity(FTU)=6
-Closure Presure Range(psi)=8000(55MPa)
 Kf=100752.9302
 //
 WellForcast

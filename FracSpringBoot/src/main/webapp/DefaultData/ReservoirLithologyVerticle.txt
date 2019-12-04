@@ -1,0 +1,8 @@
+Net pay thickness(h): ft=0.0
+Porosity=0.0
+Permeability(k): md=0.0
+Skin(s) (pre Job)=0.0
+Reservoir pressure: psi=0.0
+Reservoir Permeability (md)=0.0
+Reservoir Temperature=0.0
+Tensile Strength (psi)=0.0

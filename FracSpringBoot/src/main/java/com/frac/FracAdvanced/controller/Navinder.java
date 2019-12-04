@@ -1,11 +1,14 @@
 package com.frac.FracAdvanced.controller;
 
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.frac.FracAdvanced.model.ProjectDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,7 @@ public class Navinder {
 	public String show(@ModelAttribute("ProjectDetail") ProjectDetails details,HttpSession session,Model model){
 		session.setAttribute("ProjectDetail", details);
 		model.addAttribute("doneSim", reportparamservice.simulationDone(details.getId()));
+		session.setAttribute("unitType", prodetails.findById(details.getId()).get().getUnitType());
 		return "projectDetails/projectDetail";
 	}
 	
@@ -40,6 +44,8 @@ public class Navinder {
 		session.setAttribute("ProjectDetail", details);
 		return "view/showgraph";
 	}
+	
+		
 	
 	
 }

@@ -94,44 +94,44 @@ public class ReportMakingService {
 		}
 
 		String rw1 = rfr.findByParamAndDetails("Well Bore Radius(feet)", pdr.getOne(pid)).get(0).getValue();//
-		if (rw1 == null | rw1.isEmpty() | rw1.matches("^[a-zA-Z]*$")) {
+		/*if (rw1 == null | rw1.isEmpty() | rw1.matches("^[a-zA-Z]*$")) {
 			SS = SS + "  Well Bore Radius(feet) From Reservoir Fluid Properties,   ";
 			mapList.put("Well Bore Radius(feet) From Reservoir Fluid Properties", "Reservoir Fluid");
-		}
+		}*/
 
 		String A1 = rfr.findByParamAndDetails("Drinage Area(Acres)", pdr.getOne(pid)).get(0).getValue();//
-		if (A1 == null | A1.isEmpty() | A1.matches("^[a-zA-Z]*$")) {
+		/*if (A1 == null | A1.isEmpty() | A1.matches("^[a-zA-Z]*$")) {
 			SS = SS + "  Drinage Area(Acres) From Reservoir Fluid Properties,  ";
 			mapList.put("Drinage Area(Acres) From Reservoir Fluid Properties", "Reservoir Fluid");
 
-		}
+		}*/
 
 		String k1 = rfr.findByParamAndDetails("Reservoir Permeability(md)", pdr.getOne(pid)).get(0).getValue();//
-		if (k1 == null | k1.isEmpty() | k1.matches("^[a-zA-Z]*$")) {
+		/*if (k1 == null | k1.isEmpty() | k1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Reservoir Permeability(md) From Reservoir Fluid Properties", "Reservoir Fluid");
-		}
+		}*/
 
 		String h1 = rfr.findByParamAndDetails("Fracture Gross Height(feet)", pdr.getOne(pid)).get(0).getValue();//
-		if (h1 == null | h1.isEmpty() | h1.matches("^[a-zA-Z]*$")) {
+		/*if (h1 == null | h1.isEmpty() | h1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Fracture Gross Height(feet) From Reservoir Fluid Properties", "Reservoir Fluid");
-		}
+		}*/
 
 		String C1 = rfr.findByParamAndDetails("Leak off Coefficient(ft/min^0.5)", pdr.getOne(pid)).get(0).getValue();// C
-		if (C1 == null | C1.isEmpty() | C1.matches("^[a-zA-Z]*$")) {
+		/*if (C1 == null | C1.isEmpty() | C1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Leak off Coefficient(ft/min^0.5) From Reservoir Fluid Properties", "Reservoir Fluid");
 
-		}
+		}*/
 
 		String V1 = rfr.findByParamAndDetails("Poisons Ratio", pdr.getOne(pid)).get(0).getValue();//
-		if (V1 == null | V1.isEmpty() | V1.matches("^[a-zA-Z]*$")) {
+		/*if (V1 == null | V1.isEmpty() | V1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Poisons Ratio From Reservoir Fluid Properties", "Reservoir Fluid");
-		}
+		}*/
 
 		String G1 = rfr.findByParamAndDetails("Shear Modulus(psi)", pdr.getOne(pid)).get(0).getValue();//
-		if (G1 == null | G1.isEmpty() | G1.matches("^[a-zA-Z]*$")) {
+		/*if (G1 == null | G1.isEmpty() | G1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Shear Modulus(psi) From Reservoir Fluid Properties", "Reservoir Fluid");
 		}
-
+*/
 		String u1 = fluidLR.findByProId(pid).get(0).getFluidTypeSelected();
 		List<FluidLibraryModel> f12 = fluidLR.findByPidFLAndType(pdr.getOne(pid), u1);
 		if (true == f12.isEmpty()) {
@@ -144,14 +144,14 @@ public class ReportMakingService {
 			mapList.put("Poppant Diameter From Poppant Properties", "Poppant Properties");
 		}
 
-		String fy1 = propantr.findByParamAndDetails("Packed Porosity", pdr.getOne(pid)).get(0).getValue();
-		if (fy1 == null | fy1.isEmpty() | fy1.matches("^[a-zA-Z]*$")) {
-			arraylist.add("Packed Porosity From Poppant Properties");
+		String fy1 = propantr.findByParamAndDetails("Specific Gravity", pdr.getOne(pid)).get(0).getValue();
+		/*if (fy1 == null | fy1.isEmpty() | fy1.matches("^[a-zA-Z]*$")) {
+			arraylist.add("Specific Gravity From Poppant Properties");
 			arraySet.add("Poppant Properties");
-			mapList.put("Poppant Diameter From Poppant Properties", "Poppant Properties");
+			mapList.put("Specific Gravity From Poppant Properties", "Poppant Properties");
 
 		}
-
+*/
 		if (mapList.size() > 0) {
 			return mapList;
 		}

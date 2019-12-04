@@ -4,6 +4,7 @@
 package com.frac.FracAdvanced.Method;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import com.frac.FracAdvanced.model.ProjectDetails;
 import com.frac.FracAdvanced.model.ProppantModel;
 import com.frac.FracAdvanced.model.PumpingModel;
 import com.frac.FracAdvanced.model.ReservoirFluidModel;
+import com.frac.FracAdvanced.model.ReservoirLithologyModelVerticle;
 import com.frac.FracAdvanced.model.RockPropertiesModel;
 import com.frac.FracAdvanced.model.WellDataModel;
 import com.frac.FracAdvanced.model.WellForcastDeclinedCurveModel;
@@ -30,6 +32,7 @@ import com.frac.FracAdvanced.repository.ProjectDetailRepo;
 import com.frac.FracAdvanced.repository.ProppantRepo;
 import com.frac.FracAdvanced.repository.PumpingRepo;
 import com.frac.FracAdvanced.repository.ReservoirFluidRepo;
+import com.frac.FracAdvanced.repository.ReservoirLithologyVerticleRepo;
 import com.frac.FracAdvanced.repository.RockPropertiesRepo;
 import com.frac.FracAdvanced.repository.WellDataRepo;
 import com.frac.FracAdvanced.repository.WellForcastDeclinedCurveRepo;
@@ -65,6 +68,8 @@ public class CreateDefaultData {
 	private FluidLibraryRepo flr;
 	@Autowired
 	private WellForcastDeclinedCurveRepo curveRepo;
+	@Autowired
+	private ReservoirLithologyVerticleRepo lithologyVerticleRepo; 
 
 	public void setDefault(Integer pid) throws Exception {
 		String path = session.getServletContext().getRealPath("/");
@@ -167,9 +172,11 @@ public class CreateDefaultData {
 	}
 	
 	public void saveProppantData(List<String> param, List<String> value, Integer pid) {
+		System.out.println(param);
+		System.out.println(value);
 		ProjectDetails details = detailRepo.findById(pid).orElse(null);
 		List<ProppantModel> list=new ArrayList<ProppantModel>();
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 6; i++) {
 			if(list.size()>0&&list.get(0).getParam().equalsIgnoreCase(param.get(i))) {
 				break;
 			}
@@ -290,4 +297,31 @@ public class CreateDefaultData {
 	            			  } }
 	            		  br.close();  	  
 	            	} catch(Exception e) { System.out.println(e);}  }  
+	             
+	             // reservoir lithology verticle
+	             
+	             public void saveReservoirLithologyVerticle(int pid) throws Exception
+	            	{
+	            	ProjectDetails pd1=	detailRepo.getOne(pid);
+	            		String[] as=null;
+	            		 String path=session.getServletContext().getRealPath("/");		 
+	            	try {		
+	            		FileReader file=new FileReader(path+"/DefaultData/ReservoirLithologyVerticle.txt");	 		
+	            		  BufferedReader br = new BufferedReader(file); 	  
+	            		  String st; 
+	            		  String type=null;
+	            		  ReservoirLithologyModelVerticle m1=null;
+	            		  while ((st = br.readLine()) != null) 
+	            		  {    
+	            			    m1= new ReservoirLithologyModelVerticle();
+	            			    as = st.split("[=]");	
+                                m1.setParam(as[0]);	            				  
+	            			    m1.setValue(as[1]);
+	            			    m1.setrLVerticle(pd1);
+	            			    lithologyVerticleRepo.save(m1);
+	            			  } 
+	            		  br.close();  	  
+	            	} catch(Exception e) { System.out.println(e);}  }  
+	             
+	             
 }

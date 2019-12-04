@@ -326,6 +326,27 @@ $(document).ready(function() {
 		});
 	});
 
+	$("#uType").change(function(event) {
+		event.preventDefault();
+		
+		var var1 = $("#uType").val();
+		var x = $("#proId").val();		
+		$.ajax({
+			url : "/changeUnit2",
+			data : {
+				uType : var1,
+				pid : x,
+			},
+			success : function(res) {
+				$("#loadtable").html(res);
+				$("#exampleModal").show();
+			}
+		});
+	});
+	
+	
+	
+	
 });
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Document.ready() ENDS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/

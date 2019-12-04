@@ -211,6 +211,26 @@ hr.style-six:after {
 						</div>
 
 					</div>
+					
+						<div class="col-md-3">
+
+						<div class="form-group">
+								Type of Unit:<!-- <select name="utype" id="uType" class="form-control danger" th:value="${ProjectDetail.getUnitType()}">
+						<option value="Field">Field</option>
+						<option value="Metric">Matric</option>
+						</select> -->
+					<select   class="form-control danger" name="utypename" id="uType">
+	<option  selected hidden th:value="${session.unitType}">[[${session.unitType}]]</option>		
+							<option value="Field">Field</option>
+						<option value="Metric">Matric</option></select>	
+						
+						</div>
+
+
+
+
+
+					</div>
 
 					<div class="col-md-1"></div>
 				</div>
@@ -245,7 +265,7 @@ hr.style-six:after {
 											<hr class="style-six" />
 											<img src="dist/img/petrolium-logo.png" class="img-logo"
 												alt="User Image">
-										</h3></strong><br>
+										</h3></strong> </li>
 
 									<div class="row">
 										<div class="col-md-12 menu-down">

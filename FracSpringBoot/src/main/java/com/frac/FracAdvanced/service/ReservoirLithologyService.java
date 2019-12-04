@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.frac.FracAdvanced.model.ProjectDetails;
 import com.frac.FracAdvanced.model.ReservoirLithologyModel;
+import com.frac.FracAdvanced.model.ReservoirLithologyModelVerticle;
 import com.frac.FracAdvanced.repository.ProjectDetailRepo;
 import com.frac.FracAdvanced.repository.ReservoirLithologyRepo;
+import com.frac.FracAdvanced.repository.ReservoirLithologyVerticleRepo;
 
 /**
  * @author ShubhamGaur
@@ -24,11 +26,14 @@ public class ReservoirLithologyService {
 	@Autowired
 	private ReservoirLithologyRepo lithologyRepo;
 	@Autowired
+	private ReservoirLithologyVerticleRepo ReservoirLithologyService;
+	@Autowired
 	private ProjectDetailRepo detailRepo;
 	
 	public List<Integer> showRows(Integer number){
 		List<Integer> list=new ArrayList<Integer>();
 		for(int i=1;i<=number;i++) {
+			System.out.println(i);
 			list.add(i);
 		}
 		return list;
@@ -40,7 +45,14 @@ public class ReservoirLithologyService {
 		return list;
 	}
 	
+	public List<ReservoirLithologyModelVerticle> verticleDataList(Integer pid){
+		ProjectDetails details=detailRepo.findById(pid).orElse(null);
+		List<ReservoirLithologyModelVerticle> list=ReservoirLithologyService.findByrLVerticle(details);
+		return list;
+	}
+	
 	public void saveLithology(Integer pid,List<String> input) {
+		System.out.println("this is the list we get"+input);
 		ProjectDetails details=detailRepo.findById(pid).orElse(null);
 		List<ReservoirLithologyModel> list=new ArrayList<>();
 		ReservoirLithologyModel lithologyModel=new ReservoirLithologyModel();
@@ -60,6 +72,10 @@ public class ReservoirLithologyService {
 				list.add(lithologyModel);
 		}
 		lithologyRepo.saveAll(list);
+		ReservoirLithologyModelVerticle lithologyModelVerticle= new ReservoirLithologyModelVerticle();
+		lithologyModelVerticle.setrLVerticle(details);
+		//lithologyModelVerticle.set
+		
 	}
 	
 	public void saveEdit(Integer pid, List<String> input) {

@@ -11,7 +11,7 @@
         }
         });
     
-    $("#rl_impstages").on('change',function(){
+    $("#rl_impstages").keyup(function(){
     	url="reservoirLithology/rows";
     	$.ajax({
     		url:url,
@@ -38,7 +38,7 @@
     	});
     });
     </script>
-    
+   [[${session.unitType}]]
      
         <div class="row" id="form">
             <div class="col-lg-4 col-xs-6">
@@ -71,6 +71,11 @@
                 <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-7">
+    
+    </br>
+
+		
+
     <div class="form-group">
     <div class="col-md-7">
     <label>Input Number Of Fracturing Stages</label>
@@ -103,6 +108,30 @@
 									Modulus<br>&nbsp;</th>
 							</tr>
 						</thead>
+						
+			  <!-- This is for the user th:if="${buttonValue=='userDiv'}" -->		
+						
+<!-- 					<thead  if=[[${session.unitType}]]=="Field">
+ -->					<thead  th:if="${session.unitType=='Field'}">
+					
+					<tr>
+								<th style="text-align: center;">Stage different unit<br>&nbsp;&nbsp;&nbsp;</th>
+									<th style="text-align: center;">&nbsp;&nbsp;&nbsp;TVD&nbsp;&nbsp;&nbsp;<br>(ft)</th>
+								<th nowrap style="text-align: center;">&nbsp;&nbsp;&nbsp;MD&nbsp;&nbsp;&nbsp;<br>(ft)</th>
+								<th nowrap style="text-align: center;">Layer different unit
+									Thickness<br>(ft)</th>
+								<th nowrap style="text-align: center;">Rock different unit
+									Type<br>&nbsp;</th>
+								<th nowrap style="text-align: center;">Permiability<br>(md)</th>
+								<th nowrap style="text-align: center;">Porosity<br>&nbsp;</th>
+								<th nowrap style="text-align: center;">Leakoff
+									Coefficient<br>(ft/min^5)</th>
+								<th nowrap style="	text-align: center;">Youngs
+									Modulus<br>&nbsp;</th>
+							</tr>
+						</thead>
+						
+						
 						<tbody>
 							<tr th:each="list:${list}">
 								<th>
@@ -126,14 +155,26 @@
 									class="form-control" id="youngs" name="rl_input" style="border:none;"></td>
 							</tr>
 							</tbody>
+							
                         </table>
+                        
+              
+                        
                     </div>
                 </div>
                 </form>
+                <center>
+                        <input type="button" value="Save" class="btn btn-primary" id="rl_impsavebt" style="display:none;">
+                        </center>
                 <br>
              </li> 
-               <br>
-                    <center>
-                    <input type="button" value="Save" class="btn btn-primary" id="rl_impsavebt" style="display:none;">
+              <center>
+             
+             
+                             <br>
+                                   	
+                
+			</div>
+			<br>
                     </center>  
         </div>

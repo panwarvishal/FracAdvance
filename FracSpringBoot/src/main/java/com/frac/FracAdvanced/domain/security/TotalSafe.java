@@ -1,4 +1,4 @@
-/*package com.frac.FracAdvanced.domain.security;
+package com.frac.FracAdvanced.domain.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -68,4 +68,3 @@ public class TotalSafe extends WebSecurityConfigurerAdapter {
 	
 	
 }
-*/

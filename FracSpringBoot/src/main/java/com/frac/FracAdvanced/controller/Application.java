@@ -3,6 +3,9 @@ package com.frac.FracAdvanced.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.frac.FracAdvanced.Method.CreateDefaultData;
 import com.frac.FracAdvanced.model.ProjectDetails;
 import com.frac.FracAdvanced.repository.ProjectDetailRepo;
+import com.frac.FracAdvanced.service.ChangeUnitService;
 import com.frac.FracAdvanced.service.PhasingParamService;
 
 /**
@@ -22,6 +26,8 @@ import com.frac.FracAdvanced.service.PhasingParamService;
 @Controller
 public class Application {
 	
+	@Autowired
+	ChangeUnitService changeUnitService; 
 	@Autowired
 	ProjectDetailRepo repo;
 	@Autowired
@@ -74,11 +80,15 @@ public class Application {
 	
 	@RequestMapping("/detail")
 	public String saveProject(Model model,@RequestParam Map<String,String> requestparams,
-			RedirectAttributes attributes)throws Exception {
+			RedirectAttributes attributes, HttpSession httpSession)throws Exception {
 		ProjectDetails detail=new ProjectDetails();
 		detail.setProjectName(requestparams.get("projectName"));
 		detail.setWellName(requestparams.get("wellName"));
 		detail.setCompanyName(requestparams.get("companyName"));
+		detail.setUnitType(requestparams.get("unitType"));
+		httpSession.setAttribute("unitType", detail.getUnitType());
+		
+		//System.out.println("His is dannnnoooooooooooooo==="+Math.pow(122, .5)); 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
 		detail.setDateCreated(dtf.format(now).toString()+" IST");
@@ -87,6 +97,7 @@ public class Application {
 		defaultdata.saveWellData(detail.getId());
 		defaultdata.saveFluidLibraryDefault(detail.getId()); 
 		defaultdata.saveReservoirFluidDefault(detail.getId());
+		defaultdata.saveReservoirLithologyVerticle(detail.getId());
 		phasingservice.savePhasingDefault(detail.getId());
 		attributes.addFlashAttribute("ProjectDetail", detail);
 		return "redirect:/list";
@@ -108,5 +119,11 @@ public class Application {
 	@RequestMapping("/projdetailPrevbt")
 	public String prevButton(){
 		return "redirect:/";
+	}
+	@RequestMapping("/changeUnit2")
+	public String changeunit12(@RequestParam("uType") String uType) throws Exception  {
+		changeUnitService.convertUnit(uType);
+		changeUnitService.changeUnitOfVTable( uType );
+ 		return "redirect:/list";
 	}
 }

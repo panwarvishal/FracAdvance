@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+
 import com.frac.FracAdvanced.domain.security.User;
 
 
@@ -26,6 +28,7 @@ import com.frac.FracAdvanced.domain.security.User;
  */
 @Entity
 @Table(name="project_details")
+//@Scope("session")
 public class ProjectDetails implements Serializable{
 	
 	@Id
@@ -44,6 +47,9 @@ public class ProjectDetails implements Serializable{
 	
 	@Column(name="date_Created", nullable=true, unique=false)
 	private String dateCreated;
+	
+	@Column(name="unitType", nullable=true, unique=false)
+	private String unitType;
 	
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "user_id")
@@ -150,6 +156,11 @@ public class ProjectDetails implements Serializable{
 			mappedBy="details") 
 	private List<PhasingParamModel> pp;
 	
+	@OneToMany(cascade= {CascadeType.ALL},
+			fetch=FetchType.LAZY,
+			mappedBy="rLVerticle") 
+	private List<ReservoirLithologyModelVerticle> rlv;
+	
 	public User getUser() {
 		return user;
 	}
@@ -199,14 +210,24 @@ public class ProjectDetails implements Serializable{
 		this.dateCreated = dateCreated;
 	}
 	
-    public ProjectDetails() {
+	
+    public String getUnitType() {
+		return unitType;
+	}
+
+	public void setUnitType(String unitType) {
+		this.unitType = unitType;
+	}
+
+	public ProjectDetails() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProjectDetails(String projectName, String wellName, String companyName, String dateCreated) {
+	public ProjectDetails(String projectName, String wellName, String companyName, String dateCreated,String unitType) {
 		this.projectName = projectName;
 		this.wellName = wellName;
 		this.companyName = companyName;
 		this.dateCreated = dateCreated;
+		this.unitType = unitType;
 	}
 }
