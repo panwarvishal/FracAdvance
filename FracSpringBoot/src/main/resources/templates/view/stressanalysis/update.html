@@ -48,13 +48,25 @@ thead, tbody tr {
 <form id="sa_impmainform">
 <input type="hidden" id="sa_uppid" name="sa_uppid" th:value="${pid}">
                         <table id="sa_upexample2" class="table table-hover table-bordered" >
-                            <thead  class="bg-gray">
+                             <thead   th:if="${session.unitType=='Metric'}" class="bg-gray">
 							<tr>
-                            		<th style="text-align: center;">Poisson's ratio</th>
-                                    <th style="text-align: center;">Density(lb/ft3)</th>
-                                    <th style="text-align: center;">Depth(ft)</th>
-                                    <th style="text-align: center;">Pore Pressure(Mpa)</th>
-                                    <th style="width:10%;text-align: center;"></th>
+                            <th style="width:16.5%;text-align: center;">Poisson's ratio(Metric)</th>
+                                    <th style="text-align: center;">Density(lb/ft3)(Metric)</th>
+                                    <th style="text-align: center;">Depth(ft)(Metric)</th>
+                                    <th style="text-align: center;">Pore Pressure(Mpa)(Metric)</th>
+
+                                    <th style="width:5%;text-align: center;"></th>
+                            
+                            </tr>
+                            </thead>
+                              <thead   th:if="${session.unitType=='Field'}" class="bg-gray">
+							<tr>
+                            <th style="width:16.5%;text-align: center;">Poisson's ratio(field)</th>
+                                    <th style="text-align: center;">Density(lb/ft3)(field)</th>
+                                    <th style="text-align: center;">Depth(ft)(field)</th>
+                                    <th style="text-align: center;">Pore Pressure(Mpa)(field)</th>
+
+                                    <th style="width:5%;text-align: center;"></th>
                             
                             </tr>
                             </thead>

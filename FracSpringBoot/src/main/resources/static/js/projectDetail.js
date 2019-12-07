@@ -337,10 +337,7 @@ $(document).ready(function() {
 				uType : var1,
 				pid : x,
 			},
-			success : function(res) {
-				$("#loadtable").html(res);
-				$("#exampleModal").show();
-			}
+		
 		});
 	});
 	

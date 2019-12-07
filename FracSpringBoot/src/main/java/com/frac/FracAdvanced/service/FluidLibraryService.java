@@ -10,6 +10,8 @@ import com.frac.FracAdvanced.repository.FluidLibraryRepo;
 import com.frac.FracAdvanced.repository.ProjectDetailRepo;
 
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
 @Component
 public class FluidLibraryService {
 	
@@ -17,49 +19,39 @@ public class FluidLibraryService {
 	FluidLibraryRepo flr;
 	@Autowired
 	ProjectDetailRepo pdr;
-	public List<FluidLibraryModel> method1(String pid, String ftype) throws Exception
-	{
-		
+	@Autowired
+	HttpSession httpsession;
 	
-		flr.findByProId(Integer.parseInt(pid)).get(0).setFluidTypeSelected(ftype);;
-			flr.save(flr.findByProId(Integer.parseInt(pid)).get(0));
-			
-			
-			
-		ArrayList<FluidLibraryModel> a1= new ArrayList<FluidLibraryModel>();
-		
-		int pid1= Integer.parseInt(pid);
-		List<FluidLibraryModel> x12=flr.findByProId(pid1);	
-			
+	int pid;
+	public List<FluidLibraryModel> method1(String ftype) throws Exception
+	{	 pid=(Integer)httpsession.getAttribute("PDId");
+		flr.findByProId(pid).get(0).setFluidTypeSelected(ftype);;
+		flr.save(flr.findByProId(pid).get(0));
+		ArrayList<FluidLibraryModel> a1= new ArrayList<FluidLibraryModel>();	
+		List<FluidLibraryModel> x12=flr.findByProId(pid);			
 		for(int i=0;i<x12.size();i++) {		
-				if((x12.get(i).getType()).equalsIgnoreCase(ftype))
+		if((x12.get(i).getType()).equalsIgnoreCase(ftype))
 		{
         a1.add(x12.get(i));			
-             }				
-		}	
+             }}	
 		return a1;
-	}
-	
-	public ArrayList<String> method2GetFluidType(String pid)
-	{
-		Set<String> uniqueTypeSet= new HashSet<String>();
-		int pid1= Integer.parseInt(pid);
-		List<FluidLibraryModel> x12=flr.findByProId(pid1);
+	}	
+	public ArrayList<String> method2GetFluidType()
+	{  Set<String> uniqueTypeSet= new HashSet<String>();
+		List<FluidLibraryModel> x12=flr.findByProId(pid);
 		for(int i=0;i<x12.size();i++) {		
 			String uniqueList=   x12.get(i).getType();
-			uniqueTypeSet.add(uniqueList);
-		}
+			uniqueTypeSet.add(uniqueList);		}
 		ArrayList<String> fluidTypeList=new ArrayList<String>(uniqueTypeSet);
 		return fluidTypeList;
 		
 	}
 	
 	
-	public void methodremoveFluidFromLibrary(String pid,String type)
+	public void methodremoveFluidFromLibrary(String type)
 	{
 		
-		int pid1= Integer.parseInt(pid);
-		List<FluidLibraryModel> x12=flr.findByProId(pid1);
+		List<FluidLibraryModel> x12=flr.findByProId(pid);
 		for(int i=0;i<x12.size();i++) {		
 			if(type.equalsIgnoreCase("Surface Crosslink")||type.equalsIgnoreCase("Linear Gel"))
 			{}
@@ -99,24 +91,21 @@ public class FluidLibraryService {
 	
 /// calculating          
 	
-	public List<FluidLibraryModel> methodCalculateViscosity(String pid, float k,float neta, float gama, String ftype) throws Exception
+	public List<FluidLibraryModel> methodCalculateViscosity( float k,float neta, float gama, String ftype) throws Exception
 	{		
 		double viscosity=47880*k*(Math.pow(gama, (neta-1)));		
 		ArrayList<FluidLibraryModel> a1= new ArrayList<FluidLibraryModel>();
-		int pid1= Integer.parseInt(pid);
-		List<FluidLibraryModel> x12=flr.findByProId(pid1);	
+		List<FluidLibraryModel> x12=flr.findByProId(pid);	
 		int i1=0;	
 		for(int i=0;i<x12.size();i++) {			
 			if((x12.get(i).getType()).equals(ftype))
-		{				
-     
+		{				   
       x12.get(i).setValue(String.valueOf(viscosity));
       flr.save(x12.get(i));               
-			i1=i1+1;
-			
+			i1=i1+1;			
 			break;  }		}
 		//get the value
-		List<FluidLibraryModel> x123=flr.findByProId(pid1);
+		List<FluidLibraryModel> x123=flr.findByProId(pid);
          for(int i=0;i<x123.size()-1;i++) {			
 			if((x123.get(i).getType()).equals(ftype))
 		{				
@@ -125,25 +114,20 @@ public class FluidLibraryService {
 		return a1;
 	}
 	/// user methods
-	public List<FluidLibraryModel> userMethod(String pid, List<String> parameter,List<String> value,  String ftype) throws Exception
-	{		
-		
+	public List<FluidLibraryModel> userMethod(List<String> parameter,List<String> value,  String ftype) throws Exception
+	{				
 		ArrayList<FluidLibraryModel> a1= new ArrayList<FluidLibraryModel>();
-		int pid1= Integer.parseInt(pid);
-		ProjectDetails pd1=	pdr.getOne(pid1);
-		//List<FluidLibraryModel> x12=flr.findByProId(pid1);	
-		
-		
-		for(int i=0; i<parameter.size();i++)
+		ProjectDetails pd1=	pdr.getOne(pid);
+     	for(int i=0; i<parameter.size();i++)
 		{FluidLibraryModel g1=new FluidLibraryModel();
-			g1.setType(ftype);
+		g1.setType(ftype);
 		g1.setPidFL(pd1);
 		g1.setParameter(parameter.get(i));
 		g1.setValue(value.get(i));
 		flr.save(g1);
 		}
 		//get the value
-		List<FluidLibraryModel> x123=flr.findByProId(pid1);
+		List<FluidLibraryModel> x123=flr.findByProId(pid);
          for(int i=0;i<x123.size()-1;i++) {			
 			if((x123.get(i).getType()).equals(ftype))
 		{				
@@ -177,12 +161,11 @@ public class FluidLibraryService {
              }		}
 		return a1;
 	}
-	public List<FluidLibraryModel> userMethod2(String pid, String value,  String ftype) throws Exception
+	public List<FluidLibraryModel> userMethod2( String value,  String ftype) throws Exception
 	{		
 		
 		ArrayList<FluidLibraryModel> a1= new ArrayList<FluidLibraryModel>();
-		int pid1= Integer.parseInt(pid);
-		List<FluidLibraryModel> x12=flr.findByProId(pid1);	
+		List<FluidLibraryModel> x12=flr.findByProId(pid);	
 		int i1=0;	
 		for(int i=0;i<x12.size();i++) {			
 			if((x12.get(i).getType()).equals(ftype))
@@ -192,7 +175,7 @@ public class FluidLibraryService {
 			i1=i1+1;			
              }		}
 		//get the value
-		List<FluidLibraryModel> x123=flr.findByProId(pid1);
+		List<FluidLibraryModel> x123=flr.findByProId(pid);
          for(int i=0;i<x123.size()-1;i++) {			
 			if((x123.get(i).getType()).equals(ftype))
 		{				

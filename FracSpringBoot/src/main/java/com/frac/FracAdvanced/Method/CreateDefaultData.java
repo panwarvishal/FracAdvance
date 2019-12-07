@@ -70,7 +70,11 @@ public class CreateDefaultData {
 	private WellForcastDeclinedCurveRepo curveRepo;
 	@Autowired
 	private ReservoirLithologyVerticleRepo lithologyVerticleRepo; 
-
+	@Autowired
+	HttpSession httpSession;
+	@Autowired
+	ProjectDetailRepo repo;
+	
 	public void setDefault(Integer pid) throws Exception {
 		String path = session.getServletContext().getRealPath("/");
 		File file = new File(path + "/DefaultData/DefaultData.txt");
@@ -268,45 +272,47 @@ public class CreateDefaultData {
 	             //reservoir fluid
 	             public void saveReservoirFluidDefault(int pid) throws Exception
 	            	{
+            	         ProjectDetails  	 pids =(ProjectDetails)httpSession.getAttribute("ProjectDetail");
+	       		         String unitType= repo.findById(pid).get().getUnitType();
+	            	
 	            	ProjectDetails pd1=	detailRepo.getOne(pid);
-	            		String[] as=null;
+	            		 String[] as=null;
 	            		 String path=session.getServletContext().getRealPath("/");		 
-	            	try {			
-	            		FileReader file=new FileReader(path+"/DefaultData/reservoirFluid.txt");	 		
-	            		  BufferedReader br = new BufferedReader(file); 	  
+	            	try {		                		
+	            		FileReader file=new FileReader(path+"/DefaultData/reservoirFluid.txt");
+	            		BufferedReader br = new BufferedReader(file); 	  
 	            		  String st; 
 	            		  String type=null;
 	            		  ReservoirFluidModel m1=null;
 	            		  while ((st = br.readLine()) != null) 
 	            		  {    
-	            			  if(st.startsWith("/"))
-	            				{type=st.substring(1);}
-	            			  else{   m1= new ReservoirFluidModel();
-	            				m1.setFluidtype(type);  
+	            			  if( st.startsWith("/"))
+	            				{ type=st.substring(1);}
+	            		  else{   m1= new ReservoirFluidModel();
+	            			      m1.setFluidtype(type);  
 	            				  as = st.split("[=]");	
 	            				  if(as[0].endsWith("(Gas)")) {
-	            					  m1.setWellType("Gas Well");
+	            				  m1.setWellType("Gas Well");
 	            				  }
 	            				  else {
-	            					  m1.setWellType("Oil Well");}
-                              m1.setParam(as[0]);	            				  
+	            				  m1.setWellType("Oil Well");}
+                                  m1.setParam(as[0]);	            				  
 	            			      m1.setValue(as[1]);
-	            			     // m1.setValue(as[1]);
-                               m1.setDetails(pd1);
+                                  m1.setDetails(pd1);
 	            			      fluidRepo.save(m1);
 	            			  } }
-	            		  br.close();  	  
-	            	} catch(Exception e) { System.out.println(e);}  }  
+	            		          br.close();  	  
+	            	}             catch(Exception e) { System.out.println(e);}  }  
 	             
 	             // reservoir lithology verticle
 	             
 	             public void saveReservoirLithologyVerticle(int pid) throws Exception
 	            	{
-	            	ProjectDetails pd1=	detailRepo.getOne(pid);
-	            		String[] as=null;
-	            		 String path=session.getServletContext().getRealPath("/");		 
+	            	             ProjectDetails pd1=	detailRepo.getOne(pid);
+	            		         String[] as=null;
+	            		         String path=session.getServletContext().getRealPath("/");		 
 	            	try {		
-	            		FileReader file=new FileReader(path+"/DefaultData/ReservoirLithologyVerticle.txt");	 		
+	            		  FileReader file=new FileReader(path+"/DefaultData/ReservoirLithologyVerticle.txt");	 		
 	            		  BufferedReader br = new BufferedReader(file); 	  
 	            		  String st; 
 	            		  String type=null;

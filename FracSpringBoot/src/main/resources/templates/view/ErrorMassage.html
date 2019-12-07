@@ -13,6 +13,27 @@ html * {
                       else{ $("#rfp").css('background','none');
                       $("#rfp").css('color','black');}
                       
+                      
+                      
+                      
+                      var avc="[[${ReservoirLithology}]]";                   
+                      if(avc=="ReservoirLithology"){
+                    	$("#rl").css('background','red');
+                    	$("#rl").css('color','#E5EF82');
+                    	     			}
+                      else{ $("#rl").css('background','none');
+                      $("#rl").css('color','black');}
+                      
+                      
+                      var avc="[[${StressAnalysis}]]";                   
+                      if(avc=="StressAnalysis"){
+                    	$("#sa").css('background','red');
+                    	$("#sa").css('color','#E5EF82');
+                    	     			}
+                      else{ $("#sa").css('background','none');
+                      $("#sa").css('color','black');}
+                      
+                      
                      
                       var avc2="[[${FluidLibrary}]]"; 
                       if(avc2=="FluidLibrary"){

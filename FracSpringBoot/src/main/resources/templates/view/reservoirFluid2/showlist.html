@@ -85,7 +85,7 @@
 		event.preventDefault();
 		var i = 0;
 		$('input[name="value"]').each(function() {
-			if ($(this).val() == '' ||$(this).val() =="null" ) {
+			if ($(this).val() == ''  ) {
 				i = i + 1;
 				$(this).attr("placeholder", "Required");
 				$(this).css({'border':'1px solid #d9534f'});
@@ -150,8 +150,8 @@
 							</thead>
 							<tbody th:if="${list.empty}" id="body">
 							<tbody>
-								<tr th:each="list : ${list}">
-									<th th:text="${list.param}"></th>
+								<tr th:each="list,iterStat : ${list}">
+									<th th:text="${list.param}+${rfplist[iterStat.index]}"></th>
 									<td><input type="text" name="value"
 										th:value="${list.value}"
 										class="time form-control inputvalueclass"> <input

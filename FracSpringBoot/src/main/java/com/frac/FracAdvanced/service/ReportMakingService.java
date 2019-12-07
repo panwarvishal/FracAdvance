@@ -15,12 +15,16 @@ import org.springframework.stereotype.Service;
 import com.frac.FracAdvanced.model.FluidLibraryModel;
 import com.frac.FracAdvanced.model.InjectionPlanModel;
 import com.frac.FracAdvanced.model.ReportMakingModel;
+import com.frac.FracAdvanced.model.ReservoirLithologyModel;
+import com.frac.FracAdvanced.model.StressAnalysisModel;
 import com.frac.FracAdvanced.repository.FluidLibraryRepo;
 import com.frac.FracAdvanced.repository.InjectionPlanRepo;
 import com.frac.FracAdvanced.repository.OutputWellForcastRepo;
 import com.frac.FracAdvanced.repository.ProjectDetailRepo;
 import com.frac.FracAdvanced.repository.ProppantRepo;
 import com.frac.FracAdvanced.repository.ReservoirFluidRepo;
+import com.frac.FracAdvanced.repository.ReservoirLithologyRepo;
+import com.frac.FracAdvanced.repository.StressAnalysisRepo;
 import com.frac.FracAdvanced.repository.reportMakingModelRepo;
 
 /**
@@ -46,29 +50,45 @@ public class ReportMakingService {
 	ProppantRepo propantr;
 	@Autowired
 	OutputWellForcastRepo outputWellForcastRepo;
+	
+	@Autowired
+	ReservoirLithologyRepo lithologyRepo;
+	
+	@Autowired
+	StressAnalysisRepo stressRepo;
+	
 	ReportMakingModel m1 = new ReportMakingModel();
 
 	public void calculate_WidthOfFluidLost(Integer pid) {
-		String a1 = rfr.findByParamAndDetails("Leak off Coefficient(ft/min^0.5)", pdr.getOne(pid)).get(0).getValue();// C
-		double C = Double.parseDouble(a1) * 0.03936;
-		int x = iplanr.findBydetails(pdr.getOne(pid)).size(); /// get size of list
-		String s2 = iplanr.findBydetails(pdr.getOne(pid)).get(x - 1).getCumStepTime(); // T
-		String hf = rfr.findByParamAndDetails("Fracture Gross Height(feet)", pdr.getOne(pid)).get(0).getValue();//
-		String k1 = rfr.findByParamAndDetails("Reservoir Permeability(md)", pdr.getOne(pid)).get(0).getValue();//
-		String h = rfr.findByParamAndDetails("Pay Height(feet)", pdr.getOne(pid)).get(0).getValue();//
-		String re = rfr.findByParamAndDetails("Effective Radius(feet)", pdr.getOne(pid)).get(0).getValue();//
-		String rw = rfr.findByParamAndDetails("Well Bore Radius(feet)", pdr.getOne(pid)).get(0).getValue();//
-		String A = rfr.findByParamAndDetails("Drinage Area(Acres)", pdr.getOne(pid)).get(0).getValue();//
-		String S = rfr.findByParamAndDetails("Skin Factor", pdr.getOne(pid)).get(0).getValue();//
-		String V = rfr.findByParamAndDetails("Poisons Ratio", pdr.getOne(pid)).get(0).getValue();//
-		String E1 = rfr.findByParamAndDetails("Young's Modulus(psi)", pdr.getOne(pid)).get(0).getValue();//
-		String E = rfr.findByParamAndDetails("Shear Modulus(psi)", pdr.getOne(pid)).get(0).getValue();//
-		double T = Double.parseDouble(s2);
-		double W = 3 * C * Math.pow(T, 0.5);
-		String w1 = Double.toString(W);
-		// m1.setParam("widthOfFluidLost");
-		// m1.setValue(w1);
-		reportmmr.save(m1);
+		/*
+		 * String a1 = rfr.findByParamAndDetails("Leak off Coefficient(ft/min^0.5)",
+		 * pdr.getOne(pid)).get(0).getValue();// C double C = Double.parseDouble(a1) *
+		 * 0.03936; int x = iplanr.findBydetails(pdr.getOne(pid)).size(); /// get size
+		 * of list String s2 = iplanr.findBydetails(pdr.getOne(pid)).get(x -
+		 * 1).getCumStepTime(); // T String hf =
+		 * rfr.findByParamAndDetails("Fracture Gross Height(feet)",
+		 * pdr.getOne(pid)).get(0).getValue();// String k1 =
+		 * rfr.findByParamAndDetails("Reservoir Permeability(md)",
+		 * pdr.getOne(pid)).get(0).getValue();// String h =
+		 * rfr.findByParamAndDetails("Pay Height(feet)",
+		 * pdr.getOne(pid)).get(0).getValue();// String re =
+		 * rfr.findByParamAndDetails("Effective Radius(feet)",
+		 * pdr.getOne(pid)).get(0).getValue();// String rw =
+		 * rfr.findByParamAndDetails("Well Bore Radius(feet)",
+		 * pdr.getOne(pid)).get(0).getValue();// String A =
+		 * rfr.findByParamAndDetails("Drinage Area(Acres)",
+		 * pdr.getOne(pid)).get(0).getValue();// String S =
+		 * rfr.findByParamAndDetails("Skin Factor",
+		 * pdr.getOne(pid)).get(0).getValue();// String V =
+		 * rfr.findByParamAndDetails("Poisons Ratio",
+		 * pdr.getOne(pid)).get(0).getValue();// String E1 =
+		 * rfr.findByParamAndDetails("Young's Modulus(psi)",
+		 * pdr.getOne(pid)).get(0).getValue();// String E =
+		 * rfr.findByParamAndDetails("Shear Modulus(psi)",
+		 * pdr.getOne(pid)).get(0).getValue();// double T = Double.parseDouble(s2);
+		 * double W = 3 * C * Math.pow(T, 0.5); String w1 = Double.toString(W); //
+		 * m1.setParam("widthOfFluidLost"); // m1.setValue(w1); reportmmr.save(m1);
+		 */
 	}
 
 
@@ -87,51 +107,64 @@ public class ReportMakingService {
 			mapList.put("No value Entered In Injection Plan Button", "Injection Plan");
 
 		}
-		String re1 = rfr.findByParamAndDetails("Effective Radius(feet)", pdr.getOne(pid)).get(0).getValue();//
+		
+	   List<ReservoirLithologyModel>	lith=lithologyRepo.findBydetails(pdr.getOne(pid));
+	   if (true == lith.isEmpty()) {
+		mapList.put("No value Entered In Reservoir Lithology Button", "Reservoir Lithology");
+
+	   }
+		
+		List<StressAnalysisModel>	stress=stressRepo.findBydetails(pdr.getOne(pid));
+		if (true == stress.isEmpty()) {
+			mapList.put("No value Entered In Stress Analysis Button", "StressAnalysis");
+
+		}
+	   
+		String re1 = rfr.findByParamAndDetails("Effective Radius", pdr.getOne(pid)).get(0).getValue();//
 		if (re1 == null | re1.isEmpty() | re1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Effective Radius(feet) From Reservoir Fluid Properties", "Reservoir Fluid");
 
 		}
 
-		String rw1 = rfr.findByParamAndDetails("Well Bore Radius(feet)", pdr.getOne(pid)).get(0).getValue();//
-		/*if (rw1 == null | rw1.isEmpty() | rw1.matches("^[a-zA-Z]*$")) {
+		String rw1 = rfr.findByParamAndDetails("Well Bore Radius", pdr.getOne(pid)).get(0).getValue();//
+		if (("0.0".equalsIgnoreCase(rw1)) | rw1.isEmpty() | rw1.matches("^[a-zA-Z]*$")) {
 			SS = SS + "  Well Bore Radius(feet) From Reservoir Fluid Properties,   ";
 			mapList.put("Well Bore Radius(feet) From Reservoir Fluid Properties", "Reservoir Fluid");
-		}*/
+		}
 
-		String A1 = rfr.findByParamAndDetails("Drinage Area(Acres)", pdr.getOne(pid)).get(0).getValue();//
-		/*if (A1 == null | A1.isEmpty() | A1.matches("^[a-zA-Z]*$")) {
+		String A1 = rfr.findByParamAndDetails("Drinage Area", pdr.getOne(pid)).get(0).getValue();//
+		if ("0.0".equalsIgnoreCase(A1) | A1.isEmpty() | A1.matches("^[a-zA-Z]*$")) {
 			SS = SS + "  Drinage Area(Acres) From Reservoir Fluid Properties,  ";
 			mapList.put("Drinage Area(Acres) From Reservoir Fluid Properties", "Reservoir Fluid");
 
-		}*/
+		}
 
-		String k1 = rfr.findByParamAndDetails("Reservoir Permeability(md)", pdr.getOne(pid)).get(0).getValue();//
-		/*if (k1 == null | k1.isEmpty() | k1.matches("^[a-zA-Z]*$")) {
+		String k1 = rfr.findByParamAndDetails("Reservoir Permability", pdr.getOne(pid)).get(0).getValue();//
+		if ("0.0".equalsIgnoreCase(k1) | k1.isEmpty() | k1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Reservoir Permeability(md) From Reservoir Fluid Properties", "Reservoir Fluid");
-		}*/
+		}
 
-		String h1 = rfr.findByParamAndDetails("Fracture Gross Height(feet)", pdr.getOne(pid)).get(0).getValue();//
-		/*if (h1 == null | h1.isEmpty() | h1.matches("^[a-zA-Z]*$")) {
+		String h1 = rfr.findByParamAndDetails("Fracture Gross Height", pdr.getOne(pid)).get(0).getValue();//
+		if ("0.0".equalsIgnoreCase(h1) | h1.isEmpty() | h1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Fracture Gross Height(feet) From Reservoir Fluid Properties", "Reservoir Fluid");
-		}*/
+		}
 
-		String C1 = rfr.findByParamAndDetails("Leak off Coefficient(ft/min^0.5)", pdr.getOne(pid)).get(0).getValue();// C
-		/*if (C1 == null | C1.isEmpty() | C1.matches("^[a-zA-Z]*$")) {
+		String C1 = rfr.findByParamAndDetails("Leak off Coefficient", pdr.getOne(pid)).get(0).getValue();// C
+		if ("0.0".equalsIgnoreCase(C1) | C1.isEmpty() | C1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Leak off Coefficient(ft/min^0.5) From Reservoir Fluid Properties", "Reservoir Fluid");
 
-		}*/
+		}
 
 		String V1 = rfr.findByParamAndDetails("Poisons Ratio", pdr.getOne(pid)).get(0).getValue();//
-		/*if (V1 == null | V1.isEmpty() | V1.matches("^[a-zA-Z]*$")) {
+		if ("0.0".equalsIgnoreCase(V1) | V1.isEmpty() | V1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Poisons Ratio From Reservoir Fluid Properties", "Reservoir Fluid");
-		}*/
+		}
 
-		String G1 = rfr.findByParamAndDetails("Shear Modulus(psi)", pdr.getOne(pid)).get(0).getValue();//
-		/*if (G1 == null | G1.isEmpty() | G1.matches("^[a-zA-Z]*$")) {
+		String G1 = rfr.findByParamAndDetails("Shear Modulus", pdr.getOne(pid)).get(0).getValue();//
+		if ("0.0".equalsIgnoreCase(G1) | G1.isEmpty() | G1.matches("^[a-zA-Z]*$")) {
 			mapList.put("Shear Modulus(psi) From Reservoir Fluid Properties", "Reservoir Fluid");
 		}
-*/
+
 		String u1 = fluidLR.findByProId(pid).get(0).getFluidTypeSelected();
 		List<FluidLibraryModel> f12 = fluidLR.findByPidFLAndType(pdr.getOne(pid), u1);
 		if (true == f12.isEmpty()) {
@@ -145,13 +178,13 @@ public class ReportMakingService {
 		}
 
 		String fy1 = propantr.findByParamAndDetails("Specific Gravity", pdr.getOne(pid)).get(0).getValue();
-		/*if (fy1 == null | fy1.isEmpty() | fy1.matches("^[a-zA-Z]*$")) {
+		if (fy1 == null | fy1.isEmpty() | fy1.matches("^[a-zA-Z]*$")) {
 			arraylist.add("Specific Gravity From Poppant Properties");
 			arraySet.add("Poppant Properties");
 			mapList.put("Specific Gravity From Poppant Properties", "Poppant Properties");
 
 		}
-*/
+
 		if (mapList.size() > 0) {
 			return mapList;
 		}

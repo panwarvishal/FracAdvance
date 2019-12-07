@@ -34,6 +34,8 @@ public class Navinder {
 	@RequestMapping("/list")
 	public String show(@ModelAttribute("ProjectDetail") ProjectDetails details,HttpSession session,Model model){
 		session.setAttribute("ProjectDetail", details);
+		session.setAttribute("PDId", details.getId());
+
 		model.addAttribute("doneSim", reportparamservice.simulationDone(details.getId()));
 		session.setAttribute("unitType", prodetails.findById(details.getId()).get().getUnitType());
 		return "projectDetails/projectDetail";

@@ -169,7 +169,7 @@
     });
     
     </script>  
-    show 
+   
         <section class="content">
     <div class="tab-content" id="hide"  >
     <input type="button" class="btn btn-primary" value="System" id="buttonChainging">
@@ -278,9 +278,10 @@
                      <div class="col-md-6">
           <select name="ftype" id="fType" class="form-control">
           <option value="" disabled selected hidden>Select Type Of Fluid</option>  		
-  		<option th:each="fluidTypeList : ${fluidTypeList}"  th:value="${fluidTypeList}">[[${fluidTypeList}]]</option>
-  		
+  		<option th:each="fluidTypeList : ${fluidTypeList}"  th:value="${fluidTypeList}">[[${fluidTypeList}]]</option> 		
       </select>
+      
+      
         </div>
  </form>                   
               

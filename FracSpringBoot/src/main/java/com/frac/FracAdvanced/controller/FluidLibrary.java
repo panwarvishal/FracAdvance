@@ -3,6 +3,8 @@ package com.frac.FracAdvanced.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,19 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.frac.FracAdvanced.model.FluidLibraryModel;
+import com.frac.FracAdvanced.model.ProjectDetails;
 import com.frac.FracAdvanced.service.FluidLibraryService;
 
 @Controller
 public class FluidLibrary {
 	@Autowired
 	FluidLibraryService fls;
+	@Autowired
+	HttpSession httpsession;
 	
+	int pid;
 	@RequestMapping("/showFLFirstController")
-	public String showFL(@RequestParam("pid") String pid,
+	public String showFL(
 			           Model model) throws Exception
 	{		
-		List<FluidLibraryModel> b1=fls.method1(pid,"Linear Gel");	
-		         ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+		 pid=(Integer)httpsession.getAttribute("PDId");
+		List<FluidLibraryModel> b1=fls.method1("Linear Gel");	
+		         ArrayList<String> fluidTypeList =fls.method2GetFluidType();
 		         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);			
@@ -36,8 +43,8 @@ public class FluidLibrary {
 			              @RequestParam("buttonValue") String buttonValue,
 			              Model model) throws Exception
 	{
-		List<FluidLibraryModel> b1=fls.method1(pid,ftype);	
-		ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+		List<FluidLibraryModel> b1=fls.method1(ftype);	
+		ArrayList<String> fluidTypeList =fls.method2GetFluidType();
         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);
@@ -56,7 +63,7 @@ public class FluidLibrary {
 	{
 		String typeNmae=ftype.get(0);		
 		List<FluidLibraryModel> b1=fls.methodEdit(pid,typeNmae,value, parameter);	
-		ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+		ArrayList<String> fluidTypeList =fls.method2GetFluidType();
         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);
@@ -75,7 +82,7 @@ public class FluidLibrary {
 	{
 		String typeNmae=ftype.get(0);	
 		List<FluidLibraryModel> b1=fls.methodEditNewtonian(pid,typeNmae,value, parameter);	
-		ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+		ArrayList<String> fluidTypeList =fls.method2GetFluidType();
         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);
@@ -85,15 +92,15 @@ public class FluidLibrary {
 	
 	
 	@RequestMapping("/showFLFifthController")
-	public String showFL5(@RequestParam("pid") String pid,		              
+	public String showFL5(		              
 			              @RequestParam("k") float k,
 			              @RequestParam("neta") float neta,
 			              @RequestParam("gama") float gama,
 			              @RequestParam("ftype1") String ftype,
 			              Model model) throws Exception
 	{
-		List<FluidLibraryModel> b1=fls.methodCalculateViscosity(pid,k,neta, gama,ftype);	
-		ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+		List<FluidLibraryModel> b1=fls.methodCalculateViscosity(k,neta, gama,ftype);	
+		ArrayList<String> fluidTypeList =fls.method2GetFluidType();
         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);
@@ -103,14 +110,14 @@ public class FluidLibrary {
 	}
 	
 	@RequestMapping("/showFLSixthController")
-	public String showFL6(@RequestParam("pid") String pid,		              
+	public String showFL6(		              
 		                  @RequestParam("parameter") List<String> parameter,
                           @RequestParam("valuev") List<String> value,
                           @RequestParam("ftypevalue") String ftype,
 			              Model model) throws Exception
 	{				
-		List<FluidLibraryModel> b1=fls.userMethod(pid,parameter,value,ftype);	
-		ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+		List<FluidLibraryModel> b1=fls.userMethod(parameter,value,ftype);	
+		ArrayList<String> fluidTypeList =fls.method2GetFluidType();
         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);
@@ -120,13 +127,13 @@ public class FluidLibrary {
 	
 	
 	@RequestMapping("/showFLseventhController")
-	public String showFL7(@RequestParam("pid") String pid,		              		                 
+	public String showFL7(	              		                 
                           @RequestParam("value") String value,
                           @RequestParam("ftype10") String ftype,
 			              Model model) throws Exception
 	{	
-		List<FluidLibraryModel> b1=fls.userMethod2(pid,value,ftype);	
-		ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+		List<FluidLibraryModel> b1=fls.userMethod2(value,ftype);	
+		ArrayList<String> fluidTypeList =fls.method2GetFluidType();
         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);
@@ -136,15 +143,15 @@ public class FluidLibrary {
 	
 	
 	@RequestMapping("/showFLeighthController")
-	public String showFL8(@RequestParam("pid") String pid,		              
+	public String showFL8(		              
 			              @RequestParam("k") float k,
 			              @RequestParam("neta") float neta,
 			              @RequestParam("gama") float gama,
 			              @RequestParam("ftype10") String ftype,
 			              Model model) throws Exception
 	{			
-		List<FluidLibraryModel> b1=fls.methodCalculateViscosity(pid,k,neta, gama,ftype);
-		ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+		List<FluidLibraryModel> b1=fls.methodCalculateViscosity(k,neta, gama,ftype);
+		ArrayList<String> fluidTypeList =fls.method2GetFluidType();
         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);
@@ -152,14 +159,13 @@ public class FluidLibrary {
 		
 	}
 	@RequestMapping("/removeFluidFromLibrary")
-	public String showFL9(@RequestParam("pid") String pid,		              			              
+	public String showFL9(		              			              
 			              @RequestParam("fluidT") String ftype,
 			              Model model) throws Exception
-	{			
-		
-		fls.methodremoveFluidFromLibrary(pid,ftype);
-		List<FluidLibraryModel> b1=fls.method1(pid,"fluidType2");
-		ArrayList<String> fluidTypeList =fls.method2GetFluidType(pid);
+	{					
+		fls.methodremoveFluidFromLibrary(ftype);
+		List<FluidLibraryModel> b1=fls.method1("Linear Gel");
+		ArrayList<String> fluidTypeList =fls.method2GetFluidType();
         model.addAttribute("fluidTypeList", fluidTypeList);
 		model.addAttribute("pid", pid);
 		model.addAttribute("list", b1);

@@ -74,6 +74,14 @@ public class RunSimulator {
 				if (zz == "Fluid Library") {
 					model.addAttribute("FluidLibrary", "FluidLibrary");
 				}
+				if (zz == "Reservoir Lithology") {
+					model.addAttribute("ReservoirLithology", "ReservoirLithology");
+				}
+				
+				if (zz == "StressAnalysis") {
+					model.addAttribute("StressAnalysis", "StressAnalysis");
+				}
+				
 			}
 			return "view/ErrorMassage";
 		}
